@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "../../store/slices/counterSlice";
 import { decrement2, increment2 } from "../../store/slices/counter2";
+import { getMockApi } from "../../network/api/mockpJsonApi";
 
 const HomePage = () => {
   const count = useSelector((state) => state.counter.value);
   const count2 = useSelector((state) => state.counter2.value);
   const dispatch = useDispatch();
+  useEffect(() => {
+    async function getMockApiData() {
+      let aaa = await getMockApi();
+      console.log("aaaa=> ", aaa);
+    }
+
+    getMockApiData();
+  }, []);
   return (
     <div>
       <h1>HomePage</h1>
